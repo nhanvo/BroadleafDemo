@@ -48,11 +48,14 @@ public class RegisterController extends BroadleafRegisterController {
     }
     
     @RequestMapping(method=RequestMethod.POST)
-    public String processRegister(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("registrationForm") HCRegisterCustomerForm registerCustomerForm, BindingResult errors) throws ServiceException, PricingException {
+    public String processRegister(HttpServletRequest request, 
+    		HttpServletResponse response, 
+    		Model model,
+            @ModelAttribute("registrationForm") HCRegisterCustomerForm registerCustomerForm, 
+            BindingResult errors) throws ServiceException, PricingException {
 //        return super.processRegister(registerCustomerForm, errors, request, response, model);
     	String url = super.processRegister(registerCustomerForm, errors, request, response, model);
-        if (url.equals(getRegisterSuccessView())) {
+        if (url.equals(super.getRegisterSuccessView())) {
             // Grab the current customer from the request
             Customer newCustomer = CustomerState.getCustomer();
 

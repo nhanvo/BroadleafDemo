@@ -16,6 +16,8 @@
 
 package com.mycompany.controller.account;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafManageCustomerAddressesController;
 import org.broadleafcommerce.core.web.controller.account.CustomerAddressForm;
@@ -40,7 +42,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/account/addresses")
 public class ManageCustomerAddressesController extends BroadleafManageCustomerAddressesController {
-
+	private static final Log LOG = LogFactory.getLog(ManageCustomerAddressesController.class);
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);
@@ -63,6 +65,7 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     
     @RequestMapping(method = RequestMethod.GET)
     public String viewCustomerAddresses(HttpServletRequest request, Model model) {
+    	LOG.info("NHANVO_LOG " + request.getRequestURL());
         return super.viewCustomerAddresses(request, model);
     }
     
@@ -73,7 +76,9 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.GET)
     public String viewCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId) {
-        return super.viewCustomerAddress(request, model, customerAddressId);
+    	CustomerAddress address = (CustomerAddress)model;
+    	LOG.info("NHANVO_LOG " + address);
+    	return super.viewCustomerAddress(request, model, customerAddressId);
     }
 
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.POST)
