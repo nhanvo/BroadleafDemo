@@ -37,6 +37,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mycompany.order.service.workflow.add.InvalidSauceHeatRangeException;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,6 +102,8 @@ public class CartController extends BroadleafCartController {
                 //blMessages.getMessage(exception.get, lfocale))
             } else if (e.getCause() instanceof InventoryUnavailableException) {
                 responseMap.put("error", "inventoryUnavailable");
+            } else if (e.getCause() instanceof InvalidSauceHeatRangeException) {
+                responseMap.put("error", "invalidHeatRange");
             } else {
                 throw e;
             }

@@ -120,6 +120,8 @@ $(function(){
                         	
                         } else if (data.error = 'inventoryUnavailable') {
                             HC.showNotification("This item is no longer in stock. We apologize for the inconvenience.", 7000);
+                        } else if (data.error == 'invalidHeatRange') {
+                            HC.showNotification("This hot sauce isn't hot enough!");
                         } else {
                             HC.showNotification("Error adding to cart");
                         }

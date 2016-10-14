@@ -13,7 +13,8 @@
     <logger name="org.springframework"> <level value="warn" /> </logger>
     <logger name="org.springframework.web"> <level value="warn" /> </logger>
     <logger name="org.springframework.web.servlet"> <level value="warn" /> </logger>
-    
+    <logger name="com.mycompany.controller.account.LoginController"> <level value="info" /> </logger>
+    <logger name="com.mycompany.controller.account.ManageCustomerAddressesController"> <level value="info" /> </logger>
     <root>
         <priority value="warn" />
         <appender-ref ref="console" />
