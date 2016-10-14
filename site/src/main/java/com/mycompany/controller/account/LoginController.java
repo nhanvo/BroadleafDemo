@@ -16,6 +16,8 @@
 
 package com.mycompany.controller.account;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafLoginController;
 import org.broadleafcommerce.core.web.controller.account.ResetPasswordForm;
@@ -35,9 +37,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class LoginController extends BroadleafLoginController {
-    
+    private static final Log LOG = LogFactory.getLog(LoginController.class);
     @RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+    	LOG.info("NHANVO_LOG " + request.getRequestURL());
         return super.login(request, response, model);
     }
     
@@ -62,14 +65,15 @@ public class LoginController extends BroadleafLoginController {
     }   
     
     @Override
-    public String getResetPasswordUrl(HttpServletRequest request) {     
-        String url = request.getScheme() + "://" + request.getServerName() + getResetPasswordPort(request, request.getScheme() + "/");
+    public String getResetPasswordUrl(HttpServletRequest request) {    
+    	String url = request.getScheme() + "://" + request.getServerName() + getResetPasswordPort(request, request.getScheme() + "/");
         
         if (request.getContextPath() != null && ! "".equals(request.getContextPath())) {
             url = url + request.getContextPath() + "/login/resetPassword";
         } else {
             url = url + "/login/resetPassword";
         }
+        LOG.info("NHANVO_LOG " + url);
         return url;
     }
 }
