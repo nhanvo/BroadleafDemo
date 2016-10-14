@@ -17,9 +17,6 @@ cd %cwd%
 REM # Ensure that the spring-instrument jar gets downloaded and moved into target
 call mvn dependency:copy@copy-agent
 
-#REM # Start up the embedded HSQLDB database in the background. If it's already started this won't do anything
-#call mvn antrun:run@hsqldb-start
-
 setlocal
 REM # grab the path to the JRebel agent and set up a JREBEL_AGENT variable to pass to the JVM
 IF "%JREBEL_PATH%"=="" (SET JREBEL_AGENT=) ELSE (SET JREBEL_AGENT=-agentpath:%JREBEL_PATH%)
